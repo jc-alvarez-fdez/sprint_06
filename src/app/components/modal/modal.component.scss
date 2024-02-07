@@ -1,3 +1,17 @@
 button.btn-close {
   background-image: none;
 }
+
+
+button {
+  margin: 10px 0 0 15px;
+}
+i {
+  font-size:150%;
+  color: grey;
+}
+
+i:hover {
+  color: var(--bs-blue);
+}
+
