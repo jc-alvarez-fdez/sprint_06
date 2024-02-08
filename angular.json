@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sprint_06": {
+    "sprint_06_02": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sprint_06",
+            "outputPath": "dist/sprint_06_02",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sprint_06:build:production"
+              "buildTarget": "sprint_06_02:build:production"
             },
             "development": {
-              "buildTarget": "sprint_06:build:development"
+              "buildTarget": "sprint_06_02:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "sprint_06:build"
+            "buildTarget": "sprint_06_02:build"
           }
         },
         "test": {

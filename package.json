@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:sprint_06": "node dist/sprint_06/server/server.mjs"
+    "serve:ssr:sprint_06_02": "node dist/sprint_06_02/server/server.mjs"
   },
   "private": true,
   "dependencies": {
