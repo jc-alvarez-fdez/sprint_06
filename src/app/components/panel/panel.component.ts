@@ -2,13 +2,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BudgetService } from '../../services/budget.service';
 import { ModalComponent } from '../modal/modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-panel',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ModalComponent
+    ModalComponent,
+    CommonModule
   ],
   templateUrl: './panel.component.html',
   styleUrl: './panel.component.scss'
