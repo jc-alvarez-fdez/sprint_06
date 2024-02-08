@@ -36,7 +36,7 @@ describe('HomeComponent', () => {
   it('should initialize form controls', () => {
     expect(component.serveisForm.get('Seo)')).toBeTruthy();
     expect(component.serveisForm.get('Ads)')).toBeTruthy();
-    expect(component.serveisForm.get('web)')).toBeTruthy();
+    expect(component.serveisForm.get('Web)')).toBeTruthy();
   });
 
   // Compruebo que el total se actualiza correctamente al cambiar los controles del formulario

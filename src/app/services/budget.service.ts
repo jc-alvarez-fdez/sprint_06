@@ -23,8 +23,8 @@ export class BudgetService{
       preu: 400
     },
     {
-      id: 'web',
-      describe: "Programació d'una web responsive completa",
+      id: 'Web',
+      describe: "Programació d'una Web responsive completa",
       seleccio: false,
       preu: 500
     }

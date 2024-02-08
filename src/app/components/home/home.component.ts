@@ -38,7 +38,7 @@ export class HomeComponent {
   public serveisForm = new FormGroup ({
     Seo: new FormControl(false),
     Ads: new FormControl(false),
-    web: new FormControl(false),
+    Web: new FormControl(false),
   });
 
   iniciarForm(){
@@ -48,9 +48,9 @@ export class HomeComponent {
           object.seleccio = seleccioActual;
           if (seleccioActual == true){
             this.total += object.preu;
-            if (object.id == 'web') this.totalWeb = 30;
+            if (object.id == 'Web') this.totalWeb = 30;
           } else {
-            if (object.id == 'web') this.totalWeb = 0;
+            if (object.id == 'Web') this.totalWeb = 0;
             this.total -= object.preu;
           }
         })
