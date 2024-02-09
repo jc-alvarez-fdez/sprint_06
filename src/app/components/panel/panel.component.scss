@@ -8,3 +8,10 @@ i:hover {
   color: var(--bs-blue);
 }
 
+input {
+  text-align: center;
+  color: var(--bs-blue);
+  width: 50px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
