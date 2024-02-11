@@ -53,7 +53,6 @@ export class PanelComponent {
       this.idiomesPreu
     );
     this.totalPressupostCanvi.emit(totalPpto);
-    console.log(`Total Budget: ${totalPpto}`);
   }
 
 

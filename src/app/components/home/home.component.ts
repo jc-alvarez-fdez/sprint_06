@@ -58,7 +58,6 @@ export class HomeComponent {
     );
   }
   this.pptoForm.get('totPpto')!.setValue(totPpto);
-  console.log(`Total ppto en HomeComponent: ${totPpto}`);
   }
 
 
@@ -73,17 +72,16 @@ export class HomeComponent {
   }
 
   demanarPpto() {
-    console.log("hace algo?");
     const nouPressupost = this.pptoForm.value;
-    console.log(nouPressupost);
-    }
+    console.log("Ptpo capturado: ",nouPressupost);
+    this.BudgetService.guardarPpto(nouPressupost);
+    this.pptoForm.reset();
+    this.pptoForm.get('totPpto')?.reset(0);
+    this.pptoForm.get('numPagines')?.reset(1);
+    this.pptoForm.get('numIdiomes')?.reset(1);
+  }
+    
 }
- /*
-    if (nouPressupost) {
-      nouPressupost.preuTotal = this.total + this.totalWeb;
-      // Use este objeto para enviar la solicitud de presupuesto */
 
-    /*
-  }*/
 
 

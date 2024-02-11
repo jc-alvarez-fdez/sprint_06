@@ -1,11 +1,10 @@
 import { Injectable, OnInit } from '@angular/core';
-import { serveis, panelServeis, client } from '../interfaces/formularis.interface'
+import { serveis, panelServeis, client, pptoDemanat } from '../interfaces/formularis.interface'
 
 @Injectable({
   providedIn: 'root'
 })
-export class BudgetService{
-  // public totalBudgetpreu: number = 0;
+export class BudgetService {
 
   constructor() { }
 
@@ -46,9 +45,9 @@ export class BudgetService{
     nom: '',
     tel: 0,
     email: ''
-    }  
-  
-    
+    }
+
+
 
   getServeis(){
     return this.serveis;
@@ -57,7 +56,7 @@ export class BudgetService{
   calcularPreuWeb(pagines: number, idiomes: number) {
     const preuAfegir: number = 30;
     const preuBase: number = 530;
-    
+
     let preuWeb = preuBase;
 
     if (pagines > 1) {
@@ -66,10 +65,41 @@ export class BudgetService{
     if (idiomes > 1) {
       preuWeb += (idiomes - 1) * preuAfegir;
     }
-    
-    console.log(`Calcular preu web: Pàgines - ${pagines}, idiomes - ${idiomes}, Total web - ${preuWeb}`);
-    
-    return preuWeb;  
+
+    return preuWeb;
   }
+
+
+  guardarPpto(nouPressupost: pptoDemanat) {
+    let pptosDemanats: pptoDemanat[] = [];
+
+    // Obtener pptos guardados en local storage
+    const pptosGuardats = localStorage.getItem('pptosDemanats');
+    console.log("Datos almacenados en local storage:", pptosGuardats);
+
+    if (pptosGuardats) {
+      // Eliminar las comillas dobles adicionales si están presentes
+      const datosSinComillas = pptosGuardats.replace(/^"|"$/g, '');
+      try {
+        pptosDemanats = JSON.parse(datosSinComillas);
+      } catch (error) {
+        console.error("Error al analizar los datos del local storage:", error);
+      }
+    }
+
+    // Añadir presupuesto al array
+    pptosDemanats.push(nouPressupost);
+    console.log("Nuevo ppto:", nouPressupost);
+
+    // Guardar array actualizado en local storage
+    localStorage.setItem('pptosDemanats', JSON.stringify(pptosDemanats));
+    console.log("Pptos guardados:", pptosDemanats);
+  }
+
+
+
+
+
+
 
 }

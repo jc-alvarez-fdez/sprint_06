@@ -17,3 +17,16 @@ export interface client {
   tel: number,
   email: string
 }
+
+
+export interface pptoDemanat {
+  seo: boolean | null,
+  ads: boolean | null,
+  web: boolean | null,
+  numPagines: number,
+  numIdiomes: number,
+  totPpto: number,
+  nom: string,
+  tel: number,
+  email: string
+}
