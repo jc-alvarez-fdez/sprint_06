@@ -34,26 +34,23 @@ describe('HomeComponent', () => {
 
   //Compruebo que los controles del formulario se actualicen correctamente
   it('should initialize form controls', () => {
-    expect(component.serveisForm.get('Seo)')).toBeTruthy();
-    expect(component.serveisForm.get('Ads)')).toBeTruthy();
-    expect(component.serveisForm.get('Web)')).toBeTruthy();
+    expect(component.pptoForm.get('Seo)')).toBeTruthy();
+    expect(component.pptoForm.get('Ads)')).toBeTruthy();
+    expect(component.pptoForm.get('Web)')).toBeTruthy();
+    expect(component.pptoForm.get('numPagines)')).toBeTruthy();
+    expect(component.pptoForm.get('numIdiomes)')).toBeTruthy();
+    expect(component.pptoForm.get('totPpto)')).toBeTruthy();
+    expect(component.pptoForm.get('nom)')).toBeTruthy();
+    expect(component.pptoForm.get('tel)')).toBeTruthy();
+    expect(component.pptoForm.get('email)')).toBeTruthy();
   });
 
-  // Compruebo que el total se actualiza correctamente al cambiar los controles del formulario
-  it('should update total when form controls change', () => {
-    const seoControl = component.serveisForm.get('Seo') as FormControl;
-    //Simulo un cambio en el control del formulario
-    seoControl.setValue(false);
-    // Compruebo que el total se haya actualizado
-    expect(component.total).toEqual(0);
-  });
-
-  // Compruebo que totalWeb se actualiza correctamente al llamar a calcularTotalWeb
-  it('should update totalWeb when calculateTotalWeb is called', () => {
-    // Llamo a la función para actualizar totalWeb
-    component.calcularTotalWeb(50);
-    // Verifico que totalWeb se actualiza correctamente
-    expect(component.calcularTotalWeb).toEqual(50);
+  // Compruebo el cálculo del total del presupuesto
+  it('should calculate total ppto correctly', () => {
+    component.pptoForm.get('seo')!.setValue(true);
+    component.pptoForm.get('ads')!.setValue(true);
+    component.calcularTotalPpto();
+    expect(component.pptoForm.get('totPpto')!.value).toBe(700); // Verifica el total esperado
   });
 
 });

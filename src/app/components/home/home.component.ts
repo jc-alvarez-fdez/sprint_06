@@ -16,9 +16,7 @@ import { serveis, panelServeis, client } from '../../interfaces/formularis.inter
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-demanarPpto() {
-throw new Error('Method not implemented.');
-}
+
 
   public serveis = this.BudgetService.getServeis();
   pptoForm: FormGroup;
@@ -44,7 +42,7 @@ throw new Error('Method not implemented.');
     }
 
 // Calcular total del ppto
-calcularTotalPpto() {
+  calcularTotalPpto() {
   let totPpto: number = 0;
 
   if (this.pptoForm.get('seo')!.value) {
@@ -74,5 +72,18 @@ calcularTotalPpto() {
     this.calcularTotalPpto();
   }
 
+  demanarPpto() {
+    console.log("hace algo?");
+    const nouPressupost = this.pptoForm.value;
+    console.log(nouPressupost);
+    }
 }
+ /*
+    if (nouPressupost) {
+      nouPressupost.preuTotal = this.total + this.totalWeb;
+      // Use este objeto para enviar la solicitud de presupuesto */
+
+    /*
+  }*/
+
 
