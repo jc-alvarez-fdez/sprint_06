@@ -6,6 +6,8 @@ import { serveis, panelServeis, client, pptoDemanat } from '../interfaces/formul
 })
 export class BudgetService {
 
+
+
   constructor() { }
 
   public serveis: serveis[] = [
@@ -85,7 +87,7 @@ export class BudgetService {
       } catch (error) {
         console.error("Error al analizar los datos del local storage:", error);
       }
-    }
+   }
 
     // Añadir presupuesto al array
     pptosDemanats.push(nouPressupost);
@@ -95,6 +97,20 @@ export class BudgetService {
     localStorage.setItem('pptosDemanats', JSON.stringify(pptosDemanats));
     console.log("Pptos guardados:", pptosDemanats);
   }
+
+
+  getPptosDemanats() {
+    const pptosGuardats = localStorage.getItem('pptosDemanats');
+    if (pptosGuardats) {
+      try {
+        return JSON.parse(pptosGuardats);
+      } catch (error) {
+        console.error("Error al analizar los datos del local storage:", error);
+      }
+    }
+    return [];
+  }
+
 
 
 

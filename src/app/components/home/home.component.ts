@@ -4,13 +4,17 @@ import { BudgetService } from '../../services/budget.service';
 import { PanelComponent } from '../panel/panel.component';
 import { NgIf } from '@angular/common';
 import { serveis, panelServeis, client } from '../../interfaces/formularis.interface';
+import { ListPptosComponent } from '../list-pptos/list-pptos.component';
+
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     ReactiveFormsModule,
     PanelComponent,
-    NgIf,
+    ListPptosComponent,
+    NgIf
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -80,7 +84,7 @@ export class HomeComponent {
     this.pptoForm.get('numPagines')?.reset(1);
     this.pptoForm.get('numIdiomes')?.reset(1);
   }
-    
+
 }
 
 
