@@ -3,64 +3,76 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } 
 import { BudgetService } from '../../services/budget.service';
 import { PanelComponent } from '../panel/panel.component';
 import { NgIf } from '@angular/common';
-import { Serveis } from '../../interfaces/formularis.interface';
+import { serveis, panelServeis, client } from '../../interfaces/formularis.interface';
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     ReactiveFormsModule,
     PanelComponent,
-    NgIf
+    NgIf,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  public total: number = 0;
-  public totalWeb: number = 0;
+demanarPpto() {
+throw new Error('Method not implemented.');
+}
+
   public serveis = this.BudgetService.getServeis();
+  pptoForm: FormGroup;
 
 
-  mostrarPanel(){
-    return (this.BudgetService.Serveis[2].seleccio) ? true : false;
+
+  constructor(
+    private fb: FormBuilder,
+    private BudgetService: BudgetService
+    ){
+      // Inicializar el formulario
+      this.pptoForm = this.fb.group({
+        seo: false,
+        ads: false,
+        web: false,
+        numPagines: new FormControl(1),
+        numIdiomes: new FormControl(1),
+        totPpto: 0,
+        nom: "",
+        tel: "",
+        email: ""
+      });
+    }
+
+// Calcular total del ppto
+calcularTotalPpto() {
+  let totPpto: number = 0;
+
+  if (this.pptoForm.get('seo')!.value) {
+    totPpto += 300;
+  }
+  if (this.pptoForm.get('ads')!.value) {
+    totPpto += 400;
+  }
+  if (this.pptoForm.get('web')!.value) {
+    totPpto += this.BudgetService.calcularPreuWeb(
+      this.pptoForm.get('numPagines')!.value,
+      this.pptoForm.get('numIdiomes')!.value
+    );
+  }
+  this.pptoForm.get('totPpto')!.setValue(totPpto);
+  console.log(`Total ppto en HomeComponent: ${totPpto}`);
   }
 
-  constructor(public BudgetService: BudgetService){}
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
+
+  onPaginesCanvi(nouPagines: number) {
+    this.pptoForm.get('numPagines')!.setValue(nouPagines);
+    this.calcularTotalPpto();
   }
 
-  ngOnInit(): void {
-    this.serveisForm;
-    this.iniciarForm();
+  onIdiomesCanvi(nouIdiomes: number){
+    this.pptoForm.get('numIdiomes')!.setValue(nouIdiomes);
+    this.calcularTotalPpto();
   }
-
-  public serveisForm = new FormGroup ({
-    Seo: new FormControl(false),
-    Ads: new FormControl(false),
-    Web: new FormControl(false),
-  });
-
-  iniciarForm(){
-    this.BudgetService.Serveis.forEach( (object, index) => {
-      this.serveisForm.get(object.id)?.valueChanges.subscribe(
-        seleccioActual => {
-          object.seleccio = seleccioActual;
-          if (seleccioActual == true){
-            this.total += object.preu;
-            if (object.id == 'Web') this.totalWeb = 30;
-          } else {
-            if (object.id == 'Web') this.totalWeb = 0;
-            this.total -= object.preu;
-          }
-        })
-      }
-  )
-  }
-
-  calcularTotalWeb(preu: number): void{
-    this.totalWeb = preu;
-  }
-
 
 }
+

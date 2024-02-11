@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BudgetService } from '../../services/budget.service';
 import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
@@ -10,79 +10,51 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     ModalComponent,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './panel.component.html',
   styleUrl: './panel.component.scss'
 })
 
-export class PanelComponent implements OnInit{
-  paginesPreu: number = 1;
-  idiomesPreu: number = 1;
-  totalWeb: number = 30;
+export class PanelComponent {
 
-  constructor( public BudgetService: BudgetService){}
+  // inputs recibidos del componente padre
+  @Input() paginesPreu: number = 1;
+  @Input() idiomesPreu: number = 1;
 
-  ngOnInit(): void {
-    this.panelForm.setValue({
-      numPagines: '1',
-      numIdiomes: '1'
-    });
+  // emisores de eventos para el componente padre
+  @Output() paginesCanvi = new EventEmitter<number>();
+  @Output() idiomesCanvi = new EventEmitter<number>();
+  @Output() totalPressupostCanvi = new EventEmitter<number>();
 
-  }
+  constructor( private BudgetService: BudgetService){}
 
-
-  public panelForm = new FormGroup({
-    numPagines: new FormControl('1', [Validators.required, Validators.min(1)]),
-    numIdiomes: new FormControl('1', [Validators.required, Validators.min(1)]),
-  });
-
-  @Output()
-  sendTotalWeb : EventEmitter<number> = new EventEmitter();
-
-
-
-  // cambiar número página e idiomas
-
-
-/*   counter(id: string){
-    if (id == 'page-') {
-      if (this.paginesPreu <= 0) return;
-      this.paginesPreu--;
-      this.BudgetService.panelServeis[0].num = this.paginesPreu;
-    } else if (id == 'page+'){
-      this.paginesPreu++;
-      this.BudgetService.panelServeis[0].num = this.paginesPreu;
-    } else if (id == 'language-'){
-      if (this.idiomesPreu <= 0) return;
-      this.idiomesPreu--;
-      this.BudgetService.panelServeis[1].num = this.idiomesPreu;
-    } else if (id == 'language+'){
-      this.idiomesPreu++;
-      this.BudgetService.panelServeis[1].num = this.idiomesPreu;
-    }
-  } */
 
   canviarPagines(canvi: number) {
-    if (this.idiomesPreu !== undefined) {
+    if (this.paginesPreu !== undefined) {
       this.paginesPreu = Math.max(1, this.paginesPreu + canvi);
     }
+    this.paginesCanvi.emit(this.paginesPreu);
+      this.calcularTotalPpto();
   }
 
   canviarIdiomes(canvi: number) {
     if (this.idiomesPreu !== undefined) {
     this.idiomesPreu = Math.max(1, this.idiomesPreu + canvi);
     }
+    this.idiomesCanvi.emit(this.idiomesPreu);
+      this.calcularTotalPpto();
   }
 
-
-  // -------------------------------
-
-  emitTotalWeb(): void{
-    this.totalWeb = this.paginesPreu * this.idiomesPreu *30;
-    this.sendTotalWeb.emit(this.totalWeb);
+  calcularTotalPpto() {
+    const totalPpto = this.BudgetService.calcularPreuWeb(
+      this.paginesPreu,
+      this.idiomesPreu
+    );
+    this.totalPressupostCanvi.emit(totalPpto);
+    console.log(`Total Budget: ${totalPpto}`);
   }
+
 
 }
-
-

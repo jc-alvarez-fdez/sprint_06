@@ -1,4 +1,6 @@
-export interface Serveis {
+import { Interface } from "node:readline"
+
+export interface serveis {
   id: string,
   describe: string,
   seleccio: boolean | null,
@@ -6,6 +8,12 @@ export interface Serveis {
 }
 
 export interface panelServeis {
-  id: string,
+  afegir: string,
   num: number
+}
+
+export interface client {
+  nom: string,
+  tel: number,
+  email: string
 }
