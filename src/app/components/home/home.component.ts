@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
 import { BudgetService } from '../../services/budget.service';
 import { PanelComponent } from '../panel/panel.component';
 import { NgIf } from '@angular/common';
@@ -39,9 +39,9 @@ export class HomeComponent {
         numPagines: new FormControl(1),
         numIdiomes: new FormControl(1),
         totPpto: 0,
-        nom: "",
-        tel: "",
-        email: ""
+        nom: ['', this.nombreValido],
+        tel: ['', this.telefonoValido],
+        email: ['', this.emailValido],
       });
     }
 
@@ -76,6 +76,7 @@ export class HomeComponent {
   }
 
   demanarPpto() {
+  //if (this.pptoForm.get('nom')!.valid && this.pptoForm.get('tel')!.valid && this.pptoForm.get('email')!.valid) {
     const nouPressupost = this.pptoForm.value;
     console.log("Ptpo capturado: ",nouPressupost);
     this.BudgetService.guardarPpto(nouPressupost);
@@ -83,7 +84,39 @@ export class HomeComponent {
     this.pptoForm.get('totPpto')?.reset(0);
     this.pptoForm.get('numPagines')?.reset(1);
     this.pptoForm.get('numIdiomes')?.reset(1);
+  //} else {
+   //Mostrar un mensaje al usuario indicando que hay errores en el formulario
+   //console.log("Formulario no válido");
+  //}
+}
+
+  // Validaciones
+    nombreValido(control: FormControl): ValidationErrors | null {
+    const regex = new RegExp(/^[a-zA-Záéíóúñ ]+$/);
+    if (!regex.test(control.value)) {
+      return { nombreInvalido: true };
+    }
+    return null;
   }
+
+    telefonoValido(control: FormControl): ValidationErrors | null {
+    const regex = new RegExp(/^[0-9]{9}$/);
+    if (!regex.test(control.value)) {
+      return { telefonoInvalido: true };
+    }
+    return null;
+  }
+
+    emailValido(control: FormControl): ValidationErrors | null {
+    const regex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    if (!regex.test(control.value)) {
+      return { emailInvalido: true };
+    }
+    return null;
+  }
+
+
+
 
 }
 
