@@ -29,5 +29,5 @@ export interface pptoDemanat {
   nom: string,
   tel: number,
   email: string,
-  data: string
+  data: Date
 }

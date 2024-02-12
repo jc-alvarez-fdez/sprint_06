@@ -16,9 +16,6 @@ import { CommonModule, NgIf } from '@angular/common';
 export class ListPptosComponent implements OnInit{
 currentSort: any;
 filterText: any;
-sortBudgets(arg0: string) {
-throw new Error('Method not implemented.');
-}
 
   pptosDemanats: pptoDemanat[] = [];
 
@@ -59,13 +56,17 @@ throw new Error('Method not implemented.');
     this.orderByNameAsc = !this.orderByNameAsc;
     this.orderBy = 'name';
     this.pptosDemanats.sort((a, b) => {
-      if (this.orderByNameAsc) {
-        return a.nom.localeCompare(b.nom);
-      } else {
-        return b.nom.localeCompare(a.nom);
-      }
+        const nameA = a.nom ? a.nom.toLowerCase() : ''; // Verificar si a.nom está definido
+        const nameB = b.nom ? b.nom.toLowerCase() : ''; // Verificar si b.nom está definido
+
+        if (this.orderByNameAsc) {
+            return nameA.localeCompare(nameB);
+        } else {
+            return nameB.localeCompare(nameA);
+        }
     });
-  }
+}
+
 
   orderByPrice() {
     this.orderByPriceAsc = !this.orderByPriceAsc;
