@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BudgetService } from '../../services/budget.service';
 import { pptoDemanat } from '../../interfaces/formularis.interface';
 import { CommonModule, NgIf } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-pptos',
@@ -13,11 +14,12 @@ import { CommonModule, NgIf } from '@angular/common';
   templateUrl: './list-pptos.component.html',
   styleUrl: './list-pptos.component.scss'
 })
-export class ListPptosComponent implements OnInit{
-currentSort: any;
-filterText: any;
+export class ListPptosComponent implements OnInit, OnDestroy{
+  currentSort: any;
+  filterText: any;
 
   pptosDemanats: pptoDemanat[] = [];
+  private pptosSubscription: Subscription = new Subscription();
 
   searchTerm: string = '';
   orderBy: string = '';
@@ -29,13 +31,20 @@ filterText: any;
 
   constructor ( public BudgetService: BudgetService) { }
 
-  ngOnInit() {
-    // Me suscribo al observable del servicio para recoger los cambios del array
-    this.BudgetService.pptosDemanats$.subscribe(pptos => {
+  ngOnInit(): void {
+    this.pptosSubscription = this.BudgetService.pptosDemanats$.subscribe(pptos => {
       this.pptosDemanats = pptos;
     });
+
+    // Recuperar presupuestos al cargar el componente
+    this.pptosDemanats = this.BudgetService.getPptosDemanats();
   }
 
+  ngOnDestroy(): void {
+    if (this.pptosSubscription) {
+      this.pptosSubscription.unsubscribe();
+    }
+  }
   // Filtros de salida
 
 
