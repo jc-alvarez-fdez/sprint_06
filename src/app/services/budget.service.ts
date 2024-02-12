@@ -89,6 +89,10 @@ export class BudgetService {
       }
    }
 
+   // Añadir fecha y hora al objeto de presupuesto
+   const dataPpto = new Date();
+   nouPressupost.data = dataPpto.toLocaleString();
+
     // Añadir presupuesto al array
     pptosDemanats.push(nouPressupost);
     console.log("Nuevo ppto:", nouPressupost);

@@ -28,5 +28,6 @@ export interface pptoDemanat {
   totPpto: number,
   nom: string,
   tel: number,
-  email: string
+  email: string,
+  data: string
 }

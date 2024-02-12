@@ -1,5 +1,27 @@
 <h3>Pressupostos en curs:</h3>
 
+<div>
+  <button (click)="orderByDate()">
+    Data
+    <span *ngIf="orderBy === 'date' && orderByDateAsc">&#9650;</span>
+    <span *ngIf="orderBy === 'date' && !orderByDateAsc">&#9660;</span>
+  </button>
+
+  <button (click)="orderByName()">
+    Nom
+    <span *ngIf="orderBy === 'name' && orderByNameAsc">&#9650;</span>
+    <span *ngIf="orderBy === 'name' && !orderByNameAsc">&#9660;</span>
+  </button>
+
+  <button (click)="orderByPrice()">
+    Preu
+    <span *ngIf="orderBy === 'price' && orderByPriceAsc">&#9650;</span>
+    <span *ngIf="orderBy === 'price' && !orderByPriceAsc">&#9660;</span>
+  </button>
+
+</div>
+
+
 @for(ppto of pptosDemanats; track ppto.nom) {
 
   <div class="row shadow rounded">
@@ -7,6 +29,7 @@
       <h5>{{ ppto.nom }}</h5>
       <p>{{ ppto.email }}</p>
       <p>{{ ppto.tel }}</p>
+      <p>Fecha: {{ ppto.data | date:'dd/MM/yyyy' }}</p>
     </div>
 
     <div class="col-4">
@@ -19,8 +42,24 @@
     <div class="col-4">
       <p>Preu total:</p>
       <p><span>{{ ppto.totPpto }}</span> €</p>
-
     </div>
   </div>
 
 }
+
+
+
+<!-- <div class="d-flex justify-content-between align-items-center mb-3">
+  Ajustes para el buscador con símbolo de lupa
+  <div class="input-group" style="width: auto;">
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <input type="text" class="form-control" placeholder="Buscar per nom" [(ngModel)]="filterText">
+  </div>
+
+  Ajustes para los botones sin fondo y con flechas dinámicas
+  <div>
+    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('date')">Data <i class="bi" [class]="currentSort.field === 'date' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
+    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('total')">Import <i class="bi" [class]="currentSort.field === 'total' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
+    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('name')">Nom <i class="bi" [class]="currentSort.field === 'name' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
+  </div>
+-->
