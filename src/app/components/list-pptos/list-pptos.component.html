@@ -1,6 +1,12 @@
 <h3>Pressupostos en curs:</h3>
 
 <div>
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por nombre">
+  <button (click)="filterByName()">Buscar</button>
+
+</div>
+
+<div>
   <button (click)="orderByDate()">
     Data
     <span *ngIf="orderBy === 'date' && orderByDateAsc">&#9650;</span>
@@ -29,7 +35,7 @@
       <h5>{{ ppto.nom }}</h5>
       <p>{{ ppto.email }}</p>
       <p>{{ ppto.tel }}</p>
-      <p>Fecha: {{ ppto.data | date:'dd/MM/yyyy' }}</p>
+      <p>Data: {{ ppto.data | date:'dd/MM/yyyy' }}</p>
     </div>
 
     <div class="col-4">

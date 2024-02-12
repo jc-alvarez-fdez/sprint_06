@@ -3,13 +3,15 @@ import { BudgetService } from '../../services/budget.service';
 import { pptoDemanat } from '../../interfaces/formularis.interface';
 import { CommonModule, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-pptos',
   standalone: true,
   imports: [
     CommonModule,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './list-pptos.component.html',
   styleUrl: './list-pptos.component.scss'
@@ -92,6 +94,10 @@ export class ListPptosComponent implements OnInit, OnDestroy{
     });
   }
 
+  filterByName() {
+    // Filtramos los presupuestos por el nombre introducido en el campo de búsqueda
+    this.pptosDemanats = this.pptosDemanats.filter(ppto => ppto.nom.toLowerCase().includes(this.searchTerm.toLowerCase()));
+  }
 
 
 
