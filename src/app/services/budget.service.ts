@@ -1,12 +1,15 @@
 import { Injectable, OnInit } from '@angular/core';
 import { serveis, panelServeis, client, pptoDemanat } from '../interfaces/formularis.interface'
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
 
-
+  // Creo un Subject para emitir los cambios en el array
+  private pptosDemanatsSubject: Subject<pptoDemanat[]> = new Subject<pptoDemanat[]>();
+  pptosDemanats$ = this.pptosDemanatsSubject.asObservable(); // Declaro un observable
 
   constructor() { }
 
@@ -100,6 +103,9 @@ export class BudgetService {
     // Guardar array actualizado en local storage
     localStorage.setItem('pptosDemanats', JSON.stringify(pptosDemanats));
     console.log("Pptos guardados:", pptosDemanats);
+
+    // Después de guardar, emite el nuevo array a través del Subject
+    this.pptosDemanatsSubject.next(pptosDemanats);
   }
 
 

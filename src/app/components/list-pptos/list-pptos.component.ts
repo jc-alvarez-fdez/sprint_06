@@ -29,8 +29,11 @@ filterText: any;
 
   constructor ( public BudgetService: BudgetService) { }
 
-  ngOnInit(): void {
-    this.pptosDemanats = this.BudgetService.getPptosDemanats();
+  ngOnInit() {
+    // Me suscribo al observable del servicio para recoger los cambios del array
+    this.BudgetService.pptosDemanats$.subscribe(pptos => {
+      this.pptosDemanats = pptos;
+    });
   }
 
   // Filtros de salida
