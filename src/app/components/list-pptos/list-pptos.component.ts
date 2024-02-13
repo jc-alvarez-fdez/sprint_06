@@ -17,8 +17,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './list-pptos.component.scss'
 })
 export class ListPptosComponent implements OnInit, OnDestroy{
-  currentSort: any;
-  filterText: any;
+  //currentSort: any;
+  //filterText: any;
 
   pptosDemanats: pptoDemanat[] = [];
   private pptosSubscription: Subscription = new Subscription();
@@ -30,6 +30,8 @@ export class ListPptosComponent implements OnInit, OnDestroy{
   orderByDateAsc: boolean = true;
   orderByNameAsc: boolean = true;
   orderByPriceAsc: boolean = true;
+
+  
 
   constructor ( public BudgetService: BudgetService) { }
 
@@ -47,9 +49,10 @@ export class ListPptosComponent implements OnInit, OnDestroy{
       this.pptosSubscription.unsubscribe();
     }
   }
+
+
+
   // Filtros de salida
-
-
 
   orderByDate() {
     // Alternamos el estado de orden ascendente/descendente
