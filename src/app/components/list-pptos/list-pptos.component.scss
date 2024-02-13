@@ -8,3 +8,23 @@ padding: 0;
   align-items: center;
 }
 }
+button {
+  border: none;
+  background-color: initial;
+  margin-left: 10px
+ }
+
+ h3 {
+  margin: 20px 0 ;
+ }
+
+ nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+ }
+
+ .blau {
+  color: var(--bs-blue);
+ }

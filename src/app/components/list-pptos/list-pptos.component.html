@@ -1,33 +1,34 @@
 <div class="row" id="listat_pptos">
   <h3>Pressupostos en curs:</h3>
 
-  <div>
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por nombre">
-    <button (click)="filterByName()">Buscar</button>
+  <nav>
+    <div>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por nombre">
+      <button (click)="filterByName()">Buscar</button>
 
-  </div>
+    </div>
 
-  <div>
-    <button (click)="orderByDate()">
-      Data
-      <span *ngIf="orderBy === 'date' && orderByDateAsc">&#9650;</span>
-      <span *ngIf="orderBy === 'date' && !orderByDateAsc">&#9660;</span>
-    </button>
+    <div>
+      <button (click)="orderByDate()">
+        Data
+        <span *ngIf="orderBy === 'date' && orderByDateAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'date' && !orderByDateAsc"><span class="blau">&#9660;</span></span>
+      </button>
 
-    <button (click)="orderByName()">
-      Nom
-      <span *ngIf="orderBy === 'name' && orderByNameAsc">&#9650;</span>
-      <span *ngIf="orderBy === 'name' && !orderByNameAsc">&#9660;</span>
-    </button>
+      <button (click)="orderByName()">
+        Nom
+        <span *ngIf="orderBy === 'name' && orderByNameAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'name' && !orderByNameAsc"><span class="blau">&#9660;</span></span>
+      </button>
 
-    <button (click)="orderByPrice()">
-      Preu
-      <span *ngIf="orderBy === 'price' && orderByPriceAsc">&#9650;</span>
-      <span *ngIf="orderBy === 'price' && !orderByPriceAsc">&#9660;</span>
-    </button>
+      <button (click)="orderByPrice()">
+        Preu
+        <span *ngIf="orderBy === 'price' && orderByPriceAsc"><span class="blau">&#9650;</span></span>
+        <span *ngIf="orderBy === 'price' && !orderByPriceAsc"><span class="blau">&#9660;</span></span>
+      </button>
 
-  </div>
-
+    </div>
+  </nav>
 
   @for(ppto of pptosDemanats; track ppto.nom) {
 
@@ -55,17 +56,3 @@
 </div>
 
 
-<!-- <div class="d-flex justify-content-between align-items-center mb-3">
-  Ajustes para el buscador con símbolo de lupa
-  <div class="input-group" style="width: auto;">
-    <span class="input-group-text"><i class="bi bi-search"></i></span>
-    <input type="text" class="form-control" placeholder="Buscar per nom" [(ngModel)]="filterText">
-  </div>
-
-  Ajustes para los botones sin fondo y con flechas dinámicas
-  <div>
-    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('date')">Data <i class="bi" [class]="currentSort.field === 'date' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
-    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('total')">Import <i class="bi" [class]="currentSort.field === 'total' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
-    <button class="btn btn-link text-decoration-none" (click)="sortBudgets('name')">Nom <i class="bi" [class]="currentSort.field === 'name' ? (currentSort.direction === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill') : ''"></i></button>
-  </div>
--->
