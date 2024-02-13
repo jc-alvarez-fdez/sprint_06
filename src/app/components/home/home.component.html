@@ -15,10 +15,8 @@
           <p><span>{{ serveis[0].preu }}</span> €</p>
         </div>
         <div class="col-3 form-check form-switch">
-          <input class="form-check-input"
-                 type="checkbox" role="switch" id="Seo"
-                 formControlName="seo"
-                 (change)="calcularTotalPpto()">
+          <input class="form-check-input" type="checkbox" role="switch" id="Seo" formControlName="seo"
+            (change)="calcularTotalPpto()">
           <label for="Seo" class="form-check-label">
             Afegir
           </label>
@@ -34,10 +32,8 @@
           <p><span>{{ serveis[1].preu }}</span> €</p>
         </div>
         <div class="col-3 form-check form-switch">
-          <input class="form-check-input"
-                 type="checkbox" role="switch" id="Ads"
-                 formControlName="ads"
-                 (change)="calcularTotalPpto()">
+          <input class="form-check-input" type="checkbox" role="switch" id="Ads" formControlName="ads"
+            (change)="calcularTotalPpto()">
           <label for="Ads" class="form-check-label">
             Afegir
           </label>
@@ -53,10 +49,8 @@
           <p><span>{{ serveis[2].preu }}</span> €</p>
         </div>
         <div class="col-3 form-check form-switch">
-          <input class="form-check-input"
-                 type="checkbox" role="switch" id="Web"
-                 formControlName="web"
-                 (change)="calcularTotalPpto()">
+          <input class="form-check-input" type="checkbox" role="switch" id="Web" formControlName="web"
+            (change)="calcularTotalPpto()">
           <label for="Web" class="form-check-label">
             Afegir
           </label>
@@ -66,12 +60,9 @@
 
         <div class="row">
           <ng-container *ngIf="pptoForm.get('web')!.value">
-            <app-panel
-            [paginesPreu]="pptoForm.get('numPagines')!.value"
-            [idiomesPreu]="pptoForm.get('numIdiomes')!.value"
-            (paginesCanvi)="onPaginesCanvi($event)"
-            (idiomesCanvi)="onIdiomesCanvi($event)"
-            (totalPressupostCanvi)="calcularTotalPpto()">
+            <app-panel [paginesPreu]="pptoForm.get('numPagines')!.value"
+              [idiomesPreu]="pptoForm.get('numIdiomes')!.value" (paginesCanvi)="onPaginesCanvi($event)"
+              (idiomesCanvi)="onIdiomesCanvi($event)" (totalPressupostCanvi)="calcularTotalPpto()">
             </app-panel>
           </ng-container>
         </div>
@@ -80,38 +71,44 @@
 
 
 
-    <div class="d-flex justify-content-end col-12 m-3 align-items-center">
-      <h4 class="m-2">Preu pressupostat:</h4>
-      <p class="m-2"><span>{{ pptoForm.get('totPpto')!.value.toFixed(2) }}</span> €</p>
+      <div class="d-flex justify-content-end col-12 m-3 align-items-center">
+        <h4 class="m-2">Preu pressupostat:</h4>
+        <p class="m-2"><span>{{ pptoForm.get('totPpto')!.value.toFixed(2) }}</span> €</p>
+      </div>
+
+      <div class="row shadow rounded">
+        <h4>Demanar pressupost</h4>
+        <div class="row" id="datos_client">
+          <div class="col nom">
+            <label for="nom">Nom i cognoms:</label><br>
+            <input type="text" name="nom" formControlName="nom" id="nom" placeholder="Nom Cognom Cognom">
+         </div>
+         <div class="row tel">
+            <div class="col-3 ">
+              <label for="tel">Telefon:</label><br>
+              <input type="text" name="tel" formControlName="tel" id="tel" placeholder="000000000">
+            </div>
+            <div class="col">
+              <label for="email">E-mail:</label><br>
+              <input type="email" name="email" formControlName="email" id="email" placeholder="nom_usuari@dom">
+            </div>
+        </div>
+        <button class="btn btn-primary bton_ppto" type="button" (click)="demanarPpto()">Sol·licitar pressupost</button>
+
+      </div>
+
+
+      </div>
+
+    </form>
+
+    <hr>
+
+    <div class="row">
+     <app-list-pptos></app-list-pptos>
     </div>
 
-    <div class="row shadow rounded">
-      <h4>Demanar pressupost</h4>
-        <div>
-          <label for="nom">Nom i cognoms:</label>
-          <input type="text" name="nom" formControlName="nom" id="nom" placeholder="Nom Cognom Cognom">
-        </div>
-        <div>
-          <label for="tel">Telefon:</label>
-          <input type="text" name="tel" formControlName="tel" id="tel" placeholder="000000000">
-        </div>
-        <div>
-          <label for="email">E-mail:</label>
-          <input type="email" name="email" formControlName="email" id="email" placeholder="nom_usuari@dom">
-        </div>
-
-      <button class="btn btn-primary" type="button" (click)="demanarPpto()">Sol·licitar pressupost</button>
-
-    </div>
-
-  </form>
-
-  <hr>
-
-<app-list-pptos></app-list-pptos>
-
-
-</div>
+  </div>
 
 
 
@@ -134,4 +131,3 @@
     <button class="btn btn-primary" type="submit" (click)="demanarPpto()">Sol·licitar pressupost</button>
 
 </div> -->
-

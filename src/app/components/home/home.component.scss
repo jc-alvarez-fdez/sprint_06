@@ -4,6 +4,8 @@
   align-items: center;
 }
 
+
+
 span {
   color: grey;
   font-weight: bold;
@@ -13,3 +15,86 @@ span {
 input{
   color: var(--bs-blue);
 }
+
+
+#datos_client {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+    input {
+      width: 100%;
+    }
+
+    .nom {
+      padding: 0;
+    }
+    .tel {
+      padding: 0;
+
+      .col:first-of-type {
+        padding: 0;
+        margin-right: 5px;
+      }
+
+      .col:last-of-type {
+        padding: 0;
+        margin-left: 5px;
+      }
+
+    }
+
+    .mail {
+      background-color:rgb(34, 117, 89);
+    }
+
+    .bton_ppto {
+      display: block;
+      margin: 10px auto;
+      width: 40%;
+    }
+/*         .col:nth-of-type(1) {
+        background-color: aqua;
+        flex-grow: 8;
+      }
+      .col:nth-of-type(2){
+        flex-grow: 1;
+      }
+      .col:nth-of-type(32){
+        flex-grow: 1;
+      }
+ */
+}
+
+/*   .row {
+    width: 100%;
+    margin: 05px auto;
+  } */
+
+/*   .row:last-of-type {
+   background-color: aqua;
+      .col {
+        padding: 0;
+      }
+      input#tel {
+        width: 15%;
+        margin-right: 25px;
+      }
+      input#email {
+        width: auto;
+        margin-right: 0;
+    }
+  }*/
+
+  label {
+    margin: 10px 10px 3px 0;
+    padding: 0
+  }
+
+
+
+
+
+
