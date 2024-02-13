@@ -5,7 +5,7 @@ padding: 0;
 .row {
   margin: 10px auto;
   padding: 10px;
-  align-items: center;
+  align-items: stretch;
 }
 }
 button {
@@ -25,6 +25,32 @@ button {
 
  }
 
- .blau {
+ .blau, i {
   color: var(--bs-blue);
  }
+
+h5 {
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+ p {
+    margin-bottom: 0.2rem;
+    color:grey;
+ }
+strong {
+color: var(--bs-blue);
+}
+
+.col-2 {
+  text-align: center;
+    span {
+      font-size: 150%;
+      font-weight: 600;
+    }
+
+    p {
+      margin-top: 40%;
+      line-height: 1.4em;
+    }
+  }
+

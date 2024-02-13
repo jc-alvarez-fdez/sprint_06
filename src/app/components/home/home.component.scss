@@ -34,9 +34,15 @@ input{
     .tel {
       padding: 0;
 
-      .col:first-of-type {
+
+      .div {
         padding: 0;
         margin-right: 5px;
+      }
+
+      .col-3 {
+        padding: 0;
+        margin-right: 10px;
       }
 
       .col:last-of-type {
@@ -55,38 +61,8 @@ input{
       margin: 10px auto;
       width: 40%;
     }
-/*         .col:nth-of-type(1) {
-        background-color: aqua;
-        flex-grow: 8;
-      }
-      .col:nth-of-type(2){
-        flex-grow: 1;
-      }
-      .col:nth-of-type(32){
-        flex-grow: 1;
-      }
- */
-}
+  }
 
-/*   .row {
-    width: 100%;
-    margin: 05px auto;
-  } */
-
-/*   .row:last-of-type {
-   background-color: aqua;
-      .col {
-        padding: 0;
-      }
-      input#tel {
-        width: 15%;
-        margin-right: 25px;
-      }
-      input#email {
-        width: auto;
-        margin-right: 0;
-    }
-  }*/
 
   label {
     margin: 10px 10px 3px 0;

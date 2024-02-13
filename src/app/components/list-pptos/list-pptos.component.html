@@ -4,7 +4,7 @@
   <nav>
     <div>
       <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por nombre">
-      <button (click)="filterByName()">Buscar</button>
+      <button (click)="filterByName()"><i class="bi bi-search"></i></button>
 
     </div>
 
@@ -33,7 +33,7 @@
   @for(ppto of pptosDemanats; track ppto.nom) {
 
     <div class="row shadow rounded">
-      <div class="col-4">
+      <div class="col-6">
         <h5>{{ ppto.nom }}</h5>
         <p>{{ ppto.email }}</p>
         <p>{{ ppto.tel }}</p>
@@ -44,12 +44,12 @@
         <p><strong>Serveis contractats:</strong></p>
         <p *ngIf="ppto.seo">Seo</p>
         <p *ngIf="ppto.ads">Ads</p>
-        <p *ngIf="ppto.web">Web ({{ ppto.numPagines }} pàgines, {{ ppto.numIdiomes }} idiomes)</p>
+        <p *ngIf="ppto.web">Web<br>({{ ppto.numPagines }}&nbsp;pàgines, {{ ppto.numIdiomes }}&nbsp;idiomes)</p>
 
       </div>
-      <div class="col-4">
-        <p>Preu total:</p>
-        <p><span>{{ ppto.totPpto }}</span> €</p>
+      <div class="col-2">
+        <p>Preu total:<br>
+       <span>{{ ppto.totPpto }}</span> €</p>
       </div>
     </div>
   }
